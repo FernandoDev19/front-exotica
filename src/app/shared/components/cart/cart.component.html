@@ -1,0 +1,134 @@
+<p-drawer
+  header="Carrito"
+  [(visible)]="isCartVisible"
+  position="right"
+  [style]="{ backgroundColor: 'white', color: 'black' }"
+>
+  @if(productsInCart && productsInCart.length > 0){
+  <div class="flex flex-col justify-between gap-2">
+    <div class="max-h-full h-1/3 overflow-y-scroll">
+      @for(item of productsInCart; track item.product.id; let i =
+      $index){
+      <div class="p-3 hover:bg-gray-100 rounded-lg shadow-md">
+        <div class="flex flex-col gap-2">
+          <div class="flex gap-3 justify-between">
+            <div class="w-1/3 flex items-center justify-center">
+              <img
+                loading="lazy"
+                [src]="item.product.images[0]"
+                width="60"
+                height="60"
+              />
+            </div>
+            <div class="w-2/3 flex flex-col gap-2">
+              <h1 class="text-gray-800 font-semibold text-xs">
+                {{ item.product.name }}
+              </h1>
+              <div class="flex gap-2">
+                <h2 class="text-xs text-center text-gray-600">
+                  Cantidad: {{ item.quantity }}
+                </h2>
+                <button
+                  (click)="removeProductOfCart(item.product, i)"
+                  class="bg-red-400 hover:bg-red-500 cursor-pointer p-1 text-white transition-color duration-300 ease rounded-full h-[1rem] w-[1rem] flex justify-center items-center text-xs"
+                >
+                  -
+                </button>
+                <button
+                  (click)="addProductToCart(item.product)"
+                  [class]="
+                    item.quantity >= item.product.in_stock
+                      ? 'bg-gray-400 cursor-default'
+                      : 'hover:bg-green-500 bg-green-400 cursor-pointer'
+                  "
+                  class="p-1 text-white transition-color duration-300 ease rounded-full h-[1rem] w-[1rem] flex justify-center items-center text-xs"
+                >
+                  +
+                </button>
+              </div>
+              <div class="flex justify-center gap-1 text-xs text-yellow-400">
+                <span *ngFor="let _ of getFullStars(item.product.qualification || 0)"
+                  ><fa-icon [icon]="faStar"></fa-icon
+                ></span>
+                <span *ngIf="hasHalfStar(item.product.qualification || 0)"
+                  ><fa-icon [icon]="faStarHalf"></fa-icon
+                ></span>
+                <span class="text-gray-400">({{ item.product.quantity_of_qualifications }})</span>
+              </div>
+            </div>
+          </div>
+          <div class="flex gap-2 justify-evenly">
+            <p class="text-xs text-primary font-semibold">
+              {{
+                (item.product.offer
+                  ? item.product.offer * item.quantity
+                  : item.product.price * item.quantity
+                ) | currency : "COP" : "symbol" : "1.0-0"
+              }}
+            </p>
+            @if(item.product.offer){
+            <p class="text-xs text-gray-400 line-through">
+              {{
+                (item.product.price * item.quantity)
+                  | currency : "COP" : "symbol" : "1.0-0"
+              }}
+            </p>
+            }
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+    <div class="h-2/3 sticky bottom-0 bg-white border-t border-gray-200 p-4">
+      <!-- Resumen del carrito -->
+      <div class="flex justify-between mb-2">
+        <span class="text-gray-600">Productos:</span>
+        <span class="font-semibold">{{ getTotalQuantity() }}</span>
+      </div>
+
+      <div class="flex justify-between mb-2">
+        <span class="text-gray-600">Subtotal:</span>
+        <span class="font-semibold"
+          >${{ getSubtotal() | currency : "COP" : "symbol" : "1.0-0" }}</span
+        >
+      </div>
+
+      <div class="flex justify-between mb-2">
+        <span class="text-gray-600">Descuento:</span>
+        <span class="font-semibold text-green-600"
+          >-${{ getTotalDiscount() | currency : "COP" : "symbol" : "1.0-0" }}</span
+        >
+      </div>
+
+      <div class="flex justify-between mb-4">
+        <span class="text-lg font-bold">Total:</span>
+        <span class="text-lg font-bold"
+          >${{ getTotal() | currency : "COP" : "symbol" : "1.0-0" }}</span
+        >
+      </div>
+
+      <!-- Botones de acción -->
+      <div class="flex gap-2">
+        <button
+          type="button"
+          class="w-full py-2 px-3 text-white bg-red-500 hover:bg-red-600 rounded-md cursor-pointer"
+          (click)="clearCart()"
+        >
+          Vaciar carrito
+        </button>
+        <button
+          type="button"
+          class="w-full py-2 px-3 text-white bg-blue-400 hover:bg-blue-500 rounded-md cursor-pointer"
+          (click)="checkout()"
+        >
+          Ir a pagar
+        </button>
+      </div>
+    </div>
+  </div>
+  } @else {
+  <small class="text-center text-gray-400 font-semibold block py-5"
+    >Agrega productos a tu carrito</small
+  >
+  }
+</p-drawer>

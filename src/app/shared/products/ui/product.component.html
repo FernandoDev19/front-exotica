@@ -1,0 +1,87 @@
+<div class="w-40 md:w-[18rem] p-2">
+  <div
+    class="bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden relative"
+  >
+    <!-- Imagen del producto -->
+    <div class="block group w-full h-30 md:h-60">
+      <img
+        (click)="showDialog(product())"
+        [src]="product().images[0]"
+        [alt]="product().name"
+        class="w-full h-full object-cover"
+      />
+      <!-- Botones superpuestos -->
+      <div
+        class="hidden absolute h-60 inset-0 md:flex items-center justify-center gap-4 opacity-0 group-hover:bg-[#0000007b] group-hover:opacity-100 transition-opacity duration-300"
+      >
+        <!-- <button
+                  class="bg-gray-100 text-gray-800 px-3 py-2 rounded-full hover:text-blue-400 transition-all duration-200 border border-gray-100 hover:border-blue-400 cursor-pointer">
+                  <i class="fas fa-heart"></i>
+              </button> -->
+        <!-- <button
+                  class="bg-gray-100 text-gray-800 px-3 py-2 rounded-full hover:text-blue-400 transition-all duration-200 border border-gray-100 hover:border-blue-400 cursor-pointer">
+                  <i class="fas fa-shuffle"></i>
+              </button> -->
+        <button
+          (click)="showDialog(product())"
+          class="bg-gray-100 text-gray-800 px-3 py-2 rounded-full hover:text-blue-400 transition-all duration-200 border border-gray-100 hover:border-blue-400 cursor-pointer"
+        >
+          <fa-icon [icon]="faSearch"></fa-icon>
+        </button>
+      </div>
+    </div>
+
+    <div class="p-4">
+      <h3
+        (click)="showDialog(product())"
+        class="text-sm md:text-lg font-bold text-gray-800 product-name mb-1 md:mb-2 cursor-pointer hover:text-blue-400 transition-color duration-200 ease"
+      >
+        {{ product().name }}
+      </h3>
+      <!-- Estrellas -->
+      <span
+        class="text-yellow-400 text-xs md:text-base"
+        *ngFor="let _ of getFullStars(product().qualification || 0)"
+        ><fa-icon [icon]="faStar"></fa-icon
+      ></span>
+      <span
+        class="text-yellow-400 text-xs md:text-base"
+        *ngIf="hasHalfStar(product().qualification || 0)"
+        ><fa-icon [icon]="faStarHalf"></fa-icon
+      ></span>
+      <span class="text-gray-400">({{ product().quantity_of_qualifications || '0' }})</span>
+      <!-- precio y Boton agregar a carrito -->
+      <div
+        class="flex flex-col md:flex-row justify-between items-center md:mt-2"
+      >
+        <div class="flex gap-1 mb-3 md:m-0">
+          <p class="text-green-600 font-bold text-xs md:text-base">
+            {{
+              product().offer ?? product().price
+                | currency : "COP" : "symbol" : "1.0-0"
+            }}
+          </p>
+          @if(product().offer){
+          <p class="md:text-sm text-gray-400 line-through text-xs">
+            {{ product().price | currency : "COP" : "symbol" : "1.0-0" }}
+          </p>
+          }
+        </div>
+        <div class="relative w-full md:w-auto">
+          <button
+            (click)="addProductToCart()"
+            class="bg-gray-100 text-gray-800 w-full md:w-max md:px-3 md:py-2 rounded-lg md:rounded-full hover:text-green-400 transition-all duration-200 border border-gray-100 hover:border-green-400 cursor-pointer"
+          >
+            <fa-icon [icon]="faCartShopping"></fa-icon>
+          </button>
+          <div
+            *ngIf="isProductInCart"
+            class="absolute -right-2 -top-1 w-5 h-5 rounded-full flex items-center justify-center bg-blue-400 text-white text-xs"
+          >
+            <fa-icon [icon]="faCheck"></fa-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

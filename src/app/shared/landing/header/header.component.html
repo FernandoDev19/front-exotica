@@ -1,0 +1,179 @@
+<div
+  class="bg-black px-4 py-2 md:px-20 md:py-2"
+  style="background-color: black"
+>
+  <div class="flex justify-between items-center">
+    <ul class="inline-flex gap-5 text-white text-2xl">
+      <li>
+        <a href="#" class="group"
+          ><fa-icon
+            [icon]="faFacebook"
+            class="group-hover:scale-105 group-hover:text-blue-400 transition-all duration-200 ease-in-out"
+          ></fa-icon
+        ></a>
+      </li>
+      <li>
+        <a href="#" class="group"
+          ><fa-icon
+            [icon]="faTwitter"
+            class="group-hover:scale-105 group-hover:text-blue-400 transition-all duration-200 ease-in-out"
+          ></fa-icon
+        ></a>
+      </li>
+      <li>
+        <a href="#" class="group"
+          ><fa-icon
+            [icon]="faInstagram"
+            class="group-hover:scale-105 group-hover:text-blue-400 transition-all duration-200 ease-in-out"
+          ></fa-icon
+        ></a>
+      </li>
+    </ul>
+    <a
+      class="text-white hover:text-gray-100 flex items-center gap-1 text-base hover:text-green-400 transition-color duration-200 ease"
+      href="https://wa.me/573018109260?text=Hola,%20necesito%20ayuda%con%"
+      ><fa-icon [icon]="faWhatsapp" class="text-2xl"></fa-icon> +573018109260</a
+    >
+  </div>
+</div>
+<div class="px-4 py-2 md:px-20 md:py-5">
+  <nav class="w-full">
+    <div
+      class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto"
+    >
+      <a routerLink="/home" class="flex items-center space-x-3 rtl:space-x-reverse">
+        <!--  <img
+                          src="/imgs/logo-exotica.webp"
+                          height="80px"
+                          class="h-10 w-full"
+                          alt="Exotica logo"
+                        /> -->
+        <h1 class="text-gray-800 text-2xl md:text-3xl font-extrabold">
+          EXOTICA
+        </h1>
+      </a>
+      @if (isMobile) {
+        <div
+        class="md:hidden md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse flex items-center"
+        >
+        <div class="relative">
+          <button
+            (click)="showCart()"
+            type="button"
+            class="text-xl text-gray-800 hover:text-blue-400 cursor-pointer"
+          >
+            <fa-icon [icon]="faCartShopping"></fa-icon>
+          </button>
+          <div
+            *ngIf="itemsCount > 0"
+            class="absolute -right-3 -top-3 w-5 h-5 rounded-full flex items-center justify-center bg-blue-400 text-white text-xs"
+          >
+            {{ itemsCount }}
+          </div>
+        </div>
+        <button
+          type="button"
+          class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-800"
+          (click)="toggleMobileMenu()"
+          aria-controls="navbar-sticky"
+          [attr.aria-expanded]="isMobileMenuOpen"
+        >
+          <span class="sr-only">Abrir menu de navegación</span>
+          <svg
+            class="w-5 h-5 text-secondary"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 17 14"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M1 1h15M1 7h15M1 13h15"
+            />
+          </svg>
+        </button>
+      </div>
+      }
+      <div
+        [ngClass]="{
+          'max-h-0 opacity-0': !isMobileMenuOpen && isMobile,
+          'max-h-96 opacity-100 py-4': isMobileMenuOpen
+        }"
+        class="w-full block md:w-auto transition-all duration-300 ease-in"
+        id="navbar-default"
+      >
+        <ul
+          [ngClass]="{ hidden: !isMobileMenuOpen && isMobile }"
+          class="font-bold flex flex-col items-end p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white"
+        >
+          <li>
+            <a
+              routerLink="/home"
+              routerLinkActive="active"
+              [ngClass]="{ hidden: !isMobileMenuOpen && isMobile }"
+              class="cursor-pointer transition-color duration-200 ease block py-2 px-3 text-gray-800 hover:text-blue-400 md:p-0"
+              aria-current="page"
+              >INICIO</a
+            >
+          </li>
+          <li>
+            <a
+              routerLink="/shop"
+              routerLinkActive="active"
+              [ngClass]="{ hidden: !isMobileMenuOpen && isMobile }"
+              class="cursor-pointer transition-color duration-200 ease block py-2 px-3 text-gray-800 hover:text-blue-400 md:p-0"
+            >
+              TIENDA
+            </a>
+          </li>
+          <!-- <li>
+            <a
+              routerLink="/blogs"
+              routerLinkActive="active"
+              [ngClass]="{ hidden: !isMobileMenuOpen && isMobile }"
+              class="cursor-pointer transition-color duration-200 ease block py-2 px-3 text-gray-800 hover:text-blue-400 md:p-0"
+            >
+              BLOG
+            </a>
+          </li> -->
+          <li>
+            <a
+              routerLink="/contact-us"
+              routerLinkActive="active"
+              [ngClass]="{ hidden: !isMobileMenuOpen && isMobile }"
+              class="cursor-pointer transition-color duration-200 ease block py-2 px-3 text-gray-800 hover:text-blue-400 md:p-0"
+            >
+              CONTÁCTENOS
+            </a>
+          </li>
+          <li class="flex items-center gap-6 md:gap-5 mt-3">
+            <button
+              type="button"
+              class="text-xl text-gray-800 hover:text-blue-400 cursor-pointer"
+            >
+              <fa-icon [icon]="faSearch"></fa-icon>
+            </button>
+            <div class="relative hidden md:block">
+              <button
+                (click)="showCart()"
+                type="button"
+                class="text-xl text-gray-800 hover:text-blue-400 cursor-pointer"
+              >
+                <fa-icon [icon]="faCartShopping"></fa-icon>
+              </button>
+              <div
+                *ngIf="itemsCount > 0"
+                class="absolute -right-3 -top-3 w-5 h-5 rounded-full flex items-center justify-center bg-blue-400 text-white text-xs"
+              >
+                {{ itemsCount }}
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>

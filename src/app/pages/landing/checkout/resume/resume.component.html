@@ -1,0 +1,114 @@
+<h2 class="text-xl font-semibold mb-4 text-gray-800">Resumen del Pedido</h2>
+<div class="space-y-4">
+  <!-- Productos -->
+  <div class="space-y-3 max-h-[20rem] overflow-y-auto">
+    @for(item of products; track item.product.id; let i = $index){
+    <div class="p-3 hover:bg-gray-100 rounded-lg shadow-md">
+      <div class="flex flex-col gap-2">
+        <div class="flex gap-3 justify-between">
+          <div class="w-1/3 flex items-center justify-center">
+            <img
+              loading="lazy"
+              [src]="item.product.images[0]"
+              width="60"
+              height="60"
+            />
+          </div>
+          <div class="w-2/3 flex flex-col gap-2">
+            <h1 class="text-gray-800 font-semibold text-xs">
+              {{ item.product.name }}
+            </h1>
+            <div class="flex gap-2">
+              <h2 class="text-xs text-center text-gray-600">
+                Cantidad: {{ item.quantity }}
+              </h2>
+              <button
+                (click)="removeProductOfCart(item.product, i)"
+                class="bg-red-400 hover:bg-red-500 cursor-pointer p-1 text-white transition-color duration-300 ease rounded-full h-[1rem] w-[1rem] flex justify-center items-center text-xs"
+              >
+                -
+              </button>
+              <button
+                (click)="addProductToCart(item.product)"
+                [class]="
+                  item.quantity >= item.product.in_stock
+                    ? 'bg-gray-400 cursor-default'
+                    : 'hover:bg-green-500 bg-green-400 cursor-pointer'
+                "
+                class="p-1 text-white transition-color duration-300 ease rounded-full h-[1rem] w-[1rem] flex justify-center items-center text-xs"
+              >
+                +
+              </button>
+            </div>
+            <div class="flex gap-1 text-xs text-yellow-400">
+              <span *ngFor="let _ of getFullStars(item.product.qualification)"
+                ><fa-icon [icon]="faStar"></fa-icon
+              ></span>
+              <span *ngIf="hasHalfStar(item.product.qualification)"
+                ><fa-icon [icon]="faStarHalf"></fa-icon
+              ></span>
+              <span class="text-gray-400">({{ item.product.quantity_of_qualifications || '0' }})</span>
+            </div>
+          </div>
+        </div>
+        <div class="flex gap-2 justify-evenly">
+          <p class="text-xs text-green-400 font-semibold">
+            {{
+              (item.product.offer
+                ? item.product.offer * item.quantity
+                : item.product.price * item.quantity
+              ) | currency : "COP" : "symbol" : "1.0-0"
+            }}
+          </p>
+          @if(item.product.offer){
+          <p class="text-xs text-gray-400 line-through">
+            {{
+              item.product.price * item.quantity
+                | currency : "COP" : "symbol" : "1.0-0"
+            }}
+          </p>
+          }
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+
+  <!-- Separador -->
+  <hr class="my-4 border-gray-200" />
+
+  <!-- Resumen de Costos -->
+  <div class="space-y-2">
+    <div class="flex justify-between mb-2">
+      <span class="text-gray-600">Productos:</span>
+      <span class="font-semibold text-gray-600">{{ getTotalQuantity() }}</span>
+    </div>
+
+    <div class="flex justify-between mb-2">
+      <span class="text-gray-600">Subtotal:</span>
+      <span class="font-semibold text-gray-600"
+        >${{ getSubtotal() | currency : "COP" : "symbol" : "1.0-0" }}</span
+      >
+    </div>
+
+    <div class="flex justify-between mb-2">
+      <span class="text-gray-600">Descuento:</span>
+      <span class="font-semibold text-green-600"
+        >-${{
+          getTotalDiscount() | currency : "COP" : "symbol" : "1.0-0"
+        }}</span
+      >
+    </div>
+  </div>
+
+  <!-- Separador -->
+  <hr class="my-4 border-gray-200" />
+
+  <!-- Total Final -->
+  <div class="flex justify-between mb-4">
+    <span class="text-lg font-bold text-gray-800">Total:</span>
+    <span class="text-lg font-bold text-gray-600"
+      >${{ getTotal() | currency : "COP" : "symbol" : "1.0-0" }}</span
+    >
+  </div>
+</div>

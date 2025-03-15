@@ -1,0 +1,254 @@
+<h2 class="text-xl font-semibold mb-4 text-gray-800">Información Personal</h2>
+<form [formGroup]="checkoutForm" (submit)="confirm.emit()" class="space-y-4">
+  <!-- Nombre Completo -->
+  <div class="space-y-2">
+    <label for="name" class="block text-sm font-medium text-gray-700"
+      >Nombre Completo</label
+    >
+    <input
+      type="text"
+      id="name"
+      name="name"
+      formControlName="name"
+      maxlength="50"
+      placeholder="Ingresa tu nombre completo"
+      class="text-gray-600 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+      required
+    />
+
+    @if(checkoutForm.get('name')?.invalid && checkoutForm.get('name')?.touched){
+      @if(checkoutForm.get('name')?.errors?.['required']){
+        <small class="text-xs text-red-400">Este campo es requerido</small>
+      }
+      @else if(checkoutForm.get('name')?.errors?.['minlength']){
+        <small class="text-xs text-red-400">El nombre es muy corto</small>
+      }
+      @else if(checkoutForm.get('name')?.errors?.['maxlength']){
+        <small class="text-xs text-red-400">El nombre es demasiado largo</small>
+      }
+    }
+  </div>
+
+  <!-- Correo Electrónico y Teléfono -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="space-y-2">
+      <label for="email" class="block text-sm font-medium text-gray-700"
+        >Correo Electrónico</label
+      >
+      <input
+        type="email"
+        id="email"
+        name="email"
+        formControlName="email"
+        required
+        placeholder="ejemplo@correo.com"
+        maxlength="199"
+        class="text-gray-600 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+
+      @if(checkoutForm.get('email')?.invalid && checkoutForm.get('email')?.touched){
+        @if(checkoutForm.get('email')?.invalid && checkoutForm.get('email')?.touched){
+          <small class="text-xs text-red-400">Este campo es requerido</small>
+        }
+        @else if(checkoutForm.get('email')?.errors?.['email']){
+          <small class="text-xs text-red-400">Debe ser una dirección de correo válido</small>
+        }
+        @else if(checkoutForm.get('email')?.errors?.['maxlength']){
+          <small class="text-xs text-red-400">La dirección de correo electrónico es demasiado largo</small>
+        }
+      }
+    </div>
+
+    <div class="space-y-2">
+      <label for="phone" class="block text-sm font-medium text-gray-700"
+        >N. Celular</label
+      >
+      <input
+        type="text"
+        id="phone"
+        name="phone"
+        formControlName="phone"
+        required
+        placeholder="300XXX1234"
+        maxlength="20"
+        class="text-gray-600 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+
+      @if(checkoutForm.get('phone')?.invalid && checkoutForm.get('phone')?.touched){
+        @if(checkoutForm.get('phone')?.errors?.['required']){
+        <small class="text-xs text-red-400">Este campo es obligatorio</small>
+        }@else if(checkoutForm.get('phone')?.errors?.['pattern']){
+        <small class="text-xs text-red-400"
+          >Solo se aceptan valores numéricos</small
+        >
+        }@else if(checkoutForm.get('phone')?.errors?.['minlength']){
+        <small class="text-xs text-red-400"
+          >El número de celular es muy corto</small
+        >
+        }@else if(checkoutForm.get('phone')?.errors?.['maxlength']){
+        <small class="text-xs text-red-400"
+          >El número de celular es demasiado largo</small
+        >
+        } }@else {
+          <small class="text-xs text-yellow-400">Verifique que su teléfono sea correcto.</small>
+        }
+    </div>
+  </div>
+
+  <!-- departamento y ciudad -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="space-y-2">
+      <label for="department" class="block text-sm font-medium text-gray-700">
+        Departamento</label>
+      <input
+        type="text"
+        id="department"
+        name="department"
+        formControlName="department"
+        required
+        placeholder="Ej. Atlántico"
+        class="text-gray-600 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+
+      @if(checkoutForm.get('department')?.invalid && checkoutForm.get('department')?.touched){
+        @if(checkoutForm.get('department')?.errors?.['required']){
+          <small class="text-xs text-red-400">Este campo es requerido</small>
+        }
+        @else if(checkoutForm.get('department')?.errors?.['maxlength']){
+          <small class="text-xs text-red-400">El departamento es demasiado larga</small>
+        }
+      }
+    </div>
+
+    <div class="space-y-2">
+      <label for="city" class="block text-sm font-medium text-gray-700"
+        >Ciudad</label
+      >
+      <input
+        type="text"
+        id="city"
+        name="city"
+        formControlName="city"
+        required
+        placeholder="Ej. Barranquilla"
+        class="text-gray-600 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+
+      @if(checkoutForm.get('city')?.invalid && checkoutForm.get('city')?.touched){
+        @if(checkoutForm.get('city')?.errors?.['required']){
+          <small class="text-xs text-red-400">Este campo es requerido</small>
+        }
+        @else if(checkoutForm.get('city')?.errors?.['maxlength']){
+          <small class="text-xs text-red-400">La ciudad es demasiado larga</small>
+        }
+      }
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="space-y-2">
+      <label for="address" class="block text-sm font-medium text-gray-700"
+        >Dirección</label
+      >
+      <input
+        type="text"
+        id="address"
+        name="address"
+        formControlName="address"
+        required
+        placeholder="Ej. Calle 1 #2a-34, Kennedy"
+        maxlength="60"
+        class="text-gray-600 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+
+      @if(checkoutForm.get('address')?.invalid && checkoutForm.get('address')?.touched){
+        @if(checkoutForm.get('address')?.errors?.['required']){
+          <small class="text-xs text-red-400">Este campo es requerido</small>
+        }
+        @else if(checkoutForm.get('address')?.errors?.['minlength']){
+          <small class="text-xs text-red-400">La dirección es demasiado corta</small>
+        }
+        @else if(checkoutForm.get('address')?.errors?.['maxlength']){
+          <small class="text-xs text-red-400">La dirección es demasiado larga</small>
+        }
+      }
+    </div>
+
+    <div class="space-y-2">
+      <label for="postalCode" class="block text-sm font-medium text-gray-700"
+        >Código Postal (Opcional)</label
+      >
+      <input
+        type="text"
+        id="postalCode"
+        name="postalCode"
+        formControlName="postal_code"
+        placeholder="Ej. 080014"
+        maxlength="10"
+        class="text-gray-600 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+
+      @if(checkoutForm.get('postal_code')?.invalid && checkoutForm.get('postal_code')?.touched){
+        @if(checkoutForm.get('postal_code')?.errors?.['pattern']){
+          <small class="text-xs text-red-400">Solo se aceptan valores numéricos</small>
+        }
+        @else if(checkoutForm.get('postal_code')?.errors?.['max']){
+          <small class="text-xs text-red-400">El código postal es muy largo</small>
+        }
+      }
+    </div>
+  </div>
+
+  <!-- Método de Pago -->
+  <!-- <div class="space-y-3 pt-2">
+    <label class="block text-sm font-medium text-gray-700"
+      >Método de Pago</label
+    >
+    <div class="flex flex-col space-y-2">
+      <div class="flex items-center space-x-2">
+        <input
+          type="radio"
+          id="debit-card"
+          name="paymentMethod"
+          value="debit-card"
+          class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300"
+        />
+        <label for="debit-card" class="text-sm text-gray-700 cursor-pointer"
+          >Transferencia</label
+        >
+      </div>
+      <div class="flex items-center space-x-2">
+        <input
+          type="radio"
+          id="cash"
+          name="paymentMethod"
+          value="cash"
+          class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300"
+        />
+        <label for="cash" class="text-sm text-gray-700 cursor-pointer"
+          >Efectivo al recibir</label
+        >
+      </div>
+    </div>
+  </div> -->
+
+  <!-- Botones de Acción -->
+  <div class="flex justify-between pt-6">
+    <button
+      routerLink="shop"
+      type="button"
+      class="cursor-pointer px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+    >
+      Cancelar
+    </button>
+    <button
+      type="submit"
+      [disabled]="checkoutForm.invalid"
+      [title]="checkoutForm.valid ? 'Confirmar pedido' : 'Rellena todos los campos'"
+      [class]="checkoutForm.valid ? 'bg-blue-500 hover:bg-blue-600 cursor-pointer' : 'bg-gray-400 cursor-default'"
+      class="px-4 py-2 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+    >
+      Confirmar Pedido
+    </button>
+  </div>
+</form>

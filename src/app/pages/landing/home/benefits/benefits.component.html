@@ -1,0 +1,21 @@
+<section class="md:py-8 md:px-16">
+  <div class="container bg-blue-400 mx-auto md:rounded-lg py-8 px-5 md:p-12">
+      <div class="flex justify-evenly text-white gap-12 md:gap-3">
+          <div class="text-center">
+              <fa-icon [icon]="faTruck" class="display-4 text-primary text-2xl md:text-5xl mb-3"></fa-icon>
+              <h3 class="font-bold text-xs">Envío gratis</h3>
+              <p [ngStyle]="isMobile() ? { 'font-size': '.6rem' } : {}">En pedidos superiores a $50</p>
+          </div>
+          <div class="text-center">
+              <fa-icon [icon]="faRepeat" class="display-4 text-primary text-2xl md:text-5xl mb-3"></fa-icon>
+              <h3 class="font-bold text-xs">Devoluciones fáciles</h3>
+              <p [ngStyle]="isMobile() ? { 'font-size': '.6rem' } : {}">30 días para devoluciones</p>
+          </div>
+          <div class="text-center">
+              <fa-icon [icon]="faHeadset" class="display-4 text-primary text-2xl md:text-5xl mb-3"></fa-icon>
+              <h3 class="font-bold text-xs">Soporte 24/7</h3>
+              <p [ngStyle]="isMobile() ? { 'font-size': '.6rem' } : {}">Estamos aquí para ayudarte</p>
+          </div>
+      </div>
+  </div>
+</section>

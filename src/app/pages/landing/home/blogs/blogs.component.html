@@ -1,0 +1,33 @@
+@if(blogs && blogs.length > 0){
+<section class="pt-12 pb-5 px-16">
+  <div class="mb-10">
+    <h1 class="text-gray-800 font-bold text-4xl text-center mb-5">
+      From Our Latest Blogs
+    </h1>
+    <div class="flex justify-center mb-5">
+      <div class="border-b-2 border-b-blue-400 w-20"></div>
+    </div>
+    <p class="text-gray-400 text-center">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+    </p>
+  </div>
+
+  <div class="flex flex-wrap justify-around mb-5">
+    @for(blog of blogs; track blog){
+      <div class="h-auto w-80 p-2">
+        <div [innerHTML]="blog"></div>
+      </div>
+    }
+  </div>
+
+  <div class="w-full flex justify-center">
+    <button
+      routerLink="/blogs"
+      type="button"
+      class="transition-color duration-200 ease-in-out cursor-pointer px-4 py-2 rounded-full bg-blue-400 hover:bg-blue-500 text-white"
+    >
+      Mostrar más...
+    </button>
+  </div>
+</section>
+}

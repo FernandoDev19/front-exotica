@@ -1,0 +1,91 @@
+<section class="py-10 md:px-16">
+  <div class="container mx-auto px-4">
+    <div class="flex flex-wrap -mx-4">
+      <!-- Contact Info -->
+      <div class="w-full lg:w-1/2 px-4 mb-8 lg:mb-0">
+        <div class="bg-white p-8 rounded-lg shadow-md">
+          <h3 class="text-2xl font-bold text-gray-800 mb-6">Contact Us</h3>
+          <p class="text-gray-600 mb-6">
+            Claritas est etiam processus dynamicus, qui sequitur mutationem
+            consuetudium lectorum. Mirum est notare quam littera gothica, quam
+            nunc putamus parum claram anteposuerit litterarum formas human.
+          </p>
+
+          <!-- Address Block -->
+          <div class="mb-6">
+            <h4 class="text-lg font-semibold text-gray-700 flex items-center mb-2">
+              <svg class="w-5 h-5 mr-2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 12.414a6 6 0 10-8.486 8.486l4.242-4.242a4 4 0 015.656-5.656z"></path>
+              </svg>
+              Address
+            </h4>
+            <p class="text-gray-600">123 Main Street, Anytown, CA 12345 – USA</p>
+          </div>
+
+          <!-- Phone Block -->
+          <div class="mb-6">
+            <h4 class="text-lg font-semibold text-gray-700 flex items-center mb-2">
+              <svg class="w-5 h-5 mr-2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.68l1.68 3.36A2 2 0 0014 8.71V19a2 2 0 002 2h3.28a1 1 0 01.948.68l1.68 3.36A2 2 0 0023 22v-2a2 2 0 00-2-2H5a2 2 0 00-2 2v2a2 2 0 002 2z"></path>
+              </svg>
+              Phone
+            </h4>
+            <p class="text-gray-600">
+              <a href="tel:123456789" class="hover:text-blue-600">Mobile: (08) 123 456 789</a>
+            </p>
+            <p class="text-gray-600">
+              <a href="tel:1009678456" class="hover:text-blue-600">Hotline: 1009 678 456</a>
+            </p>
+          </div>
+
+          <!-- Email Block -->
+          <div class="mb-6">
+            <h4 class="text-lg font-semibold text-gray-700 flex items-center mb-2">
+              <svg class="w-5 h-5 mr-2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+              </svg>
+              Email
+            </h4>
+            <p class="text-gray-600">
+              <a href="mailto:yourmail@domain.com" class="hover:text-blue-600">yourmail&#64;domain.com</a>
+            </p>
+            <p class="text-gray-600">
+              <a href="mailto:support@hastech.company" class="hover:text-blue-600">support&#64;hastech.company</a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="w-full lg:w-1/2 px-4">
+        <div class="bg-white p-8 rounded-lg shadow-md">
+          <h3 class="text-2xl font-bold text-gray-800 mb-6">Tell Us Your Message</h3>
+          <form id="contact-form" action="assets/php/contact.php" method="POST" class="space-y-6">
+            <div>
+              <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Your Name <span class="text-red-500">*</span></label>
+              <input type="text" name="name" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Your Email <span class="text-red-500">*</span></label>
+              <input type="email" name="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
+            </div>
+            <div>
+              <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">Subject</label>
+              <input type="text" name="subject" id="subject" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+            </div>
+            <div>
+              <label for="contactMessage" class="block text-sm font-medium text-gray-700 mb-2">Your Message</label>
+              <textarea name="contactMessage" id="contactMessage" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"></textarea>
+            </div>
+            <div>
+              <button type="submit" class="w-full bg-blue-600 text-white py-3 px-6 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                Submit
+              </button>
+            </div>
+          </form>
+          <p class="text-gray-600 mt-4 text-center">We will get back to you as soon as possible.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

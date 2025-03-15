@@ -1,0 +1,14 @@
+<section class="py-5 px-5 md:px-16 container">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <!-- Resumen del Pedido -->
+    <div class="bg-white rounded-lg shadow-md p-6 h-fit">
+      <app-resume #checkoutResume></app-resume>
+    </div>
+
+    <!-- Formulario de Información Personal -->
+    <div class="bg-white rounded-lg shadow-md p-6">
+      <app-checkout-form #checkoutForm (confirm)="save()"></app-checkout-form>
+    </div>
+
+  </div>
+</section>
