@@ -107,6 +107,7 @@ export class AdminProductCreateComponent implements OnInit {
         alert('Producto creado exitosamente');
         this.productForm.reset();
         this.images = [];
+        this.imagesUrl = [];
         this.isSubmitting = false;
       },
       error: e => {
