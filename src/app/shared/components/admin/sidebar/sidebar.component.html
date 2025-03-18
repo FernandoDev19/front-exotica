@@ -1,0 +1,167 @@
+<p-drawer
+  header="EXOTICA"
+  [(visible)]="isSidebarVisible"
+  position="left"
+  [style]="{ backgroundColor: 'white', color: 'black' }"
+>
+  <nav class="flex flex-col">
+    <a
+      routerLink="/admin/home"
+      routerLinkActive="active"
+      class="block py-2.5 px-4 rounded hover:bg-gray-700"
+      title="Usuarios y Roles"
+      ><fa-icon
+        [icon]="faHome"
+      ></fa-icon>
+      Home
+    </a>
+    <div class="flex items-center justify-center my-4">
+      <div class="border-t border-dotted flex-grow border-gray-400"></div>
+      <span class="mx-4 font-bold text-gray-400" title="Administración"
+        >Administración</span
+      >
+      <div class="border-t border-dotted flex-grow border-gray-400"></div>
+    </div>
+    <!-- <a
+      [routerLink]="['/dashboard']"
+      routerLinkActive="active"
+      class="block py-2.5 px-4 rounded hover:bg-gray-700"
+      title="Panel de control"
+      ><fa-icon
+        class="md:inline-block block text-center md:text-start"
+        [icon]="faDashboard"
+      ></fa-icon>
+      <span *ngIf="!isCollapsed"> Dashboard</span>
+      <span class="md:text-nowrap">Dashboard</span></a
+    > -->
+
+    <a
+      routerLink="/admin/handle-products"
+      routerLinkActive="active"
+      class="block py-2 px-4 rounded hover:bg-gray-600"
+      title="Manejar productos"
+    >
+      <fa-icon
+        [icon]="faProducts"
+      ></fa-icon>
+      Products
+    </a>
+
+    <a
+      routerLink="/admin/requests"
+      routerLinkActive="active"
+      class="block py-2 px-4 rounded hover:bg-gray-600"
+      title="Lista de Solicitudes"
+    >
+      <fa-icon
+        [icon]="faOrder"
+      ></fa-icon>
+      Pedidos
+    </a>
+
+    <a
+      routerLink="/admin/customers"
+      routerLinkActive="active"
+      class="block py-2 px-4 rounded hover:bg-gray-600"
+      title="Lista de Clientes"
+    >
+      <fa-icon
+        [icon]="faUser"
+      ></fa-icon>
+      Clientes
+    </a>
+
+    <div
+      class="flex items-center justify-center my-4"
+    >
+      <div class="border-t border-dotted flex-grow border-gray-400"></div>
+      <span class="mx-4 font-bold text-gray-400" title="Web"
+        >Web</span
+      >
+      <div class="border-t border-dotted flex-grow border-gray-400"></div>
+    </div>
+    <a
+      routerLink="/admin/handle-banners"
+      routerLinkActive="active"
+      class="block py-2 px-4 rounded hover:bg-gray-600"
+      title="Banners"
+    >
+      <fa-icon
+        [icon]="faBanners"
+      ></fa-icon>
+      Banners
+    </a>
+
+    <!-- <a
+      routerLinkActive="active"
+      class="block py-2 px-4 rounded hover:bg-gray-600"
+      title="Blog"
+    >
+      <fa-icon
+        class="md:inline-block block text-center md:text-start"
+        [icon]="faBlog"
+      ></fa-icon>
+      <span *ngIf="!isCollapsed"> Blog</span>
+      <span class="md:hidden text-nowrap">Blog</span>
+    </a> -->
+
+    <div class="flex items-center justify-center my-4">
+      <div class="border-t border-dotted flex-grow border-gray-400"></div>
+      <span class="mx-4 font-bold text-gray-400" title="Datos estadísticos"
+        >Datos estadísticos</span
+      >
+      <div class="border-t border-dotted flex-grow border-gray-400"></div>
+    </div>
+
+    <a
+      routerLinkActive="active"
+      class="block py-2.5 px-4 rounded hover:bg-gray-700"
+      title="Datos estadísticos"
+      ><fa-icon
+        [icon]="faChartLine"
+      ></fa-icon>
+      Datos estadísticos</a
+    >
+
+    <a
+      routerLink="/admin/sales"
+      routerLinkActive="active"
+      class="block py-2 px-4 rounded hover:bg-gray-600"
+      title="Lista de Ventas"
+    >
+      <fa-icon
+        [icon]="faDollarSign"
+      ></fa-icon>
+      Ventas
+    </a>
+
+    <a
+      routerLink="/admin/reports"
+      routerLinkActive="active"
+      class="block py-2.5 px-4 rounded hover:bg-gray-700"
+      title="Reportes"
+      ><fa-icon
+        [icon]="faChartLine"
+      ></fa-icon>
+      Reportes</a
+    >
+
+    <div class="flex items-center justify-center my-4">
+      <div class="border-t border-dotted flex-grow border-gray-400"></div>
+      <span class="mx-4 font-bold text-gray-400" title="Otros">Otros</span>
+      <div class="border-t border-dotted flex-grow border-gray-400"></div>
+    </div>
+
+    <a
+      routerLink="/help"
+      routerLinkActive="active"
+      class="block py-2.5 px-4 rounded hover:bg-gray-700"
+      title="Ayuda"
+    >
+      <fa-icon
+        [icon]="faHelp"
+      ></fa-icon>
+      Ayuda</a
+    >
+  </nav>
+</p-drawer>

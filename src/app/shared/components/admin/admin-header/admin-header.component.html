@@ -1,0 +1,84 @@
+<!-- Navbar -->
+<header class="bg-white shadow-lg">
+  <div class="px-4 py-4 flex justify-between items-center">
+    <button
+      type="button"
+      class="inline-flex cursor-pointer items-center p-2 w-10 h-10 justify-center text-sm text-gray-800"
+      (click)="sidebar.showSidebar()"
+    >
+      <span class="sr-only">Abrir menu de navegación</span>
+      <svg
+        class="w-5 h-5 text-secondary"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 17 14"
+      >
+        <path
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M1 1h15M1 7h15M1 13h15"
+        />
+      </svg>
+    </button>
+    <div class="flex items-center space-x-4">
+      <button
+        type="button"
+        (click)="userPopover.toggle($event)"
+        class="text-gray-800 cursor-pointer"
+      >
+        <span class="user-name">Michel </span
+        ><fa-icon [icon]="faChevronDown"></fa-icon>
+      </button>
+      <p-popover #userPopover [style]="{ backgroundColor: 'white', border: 'none' }" class="shadow-lg rounded-lg">
+        <div class="p-4">
+          <div class="mb-4">
+            <h3 class="text-lg font-semibold text-gray-600 user-name">
+              Michel
+            </h3>
+            <p class="text-sm text-gray-500">Administrador/a</p>
+          </div>
+          <ul>
+            <!-- <li>
+              <a
+                [routerLink]="['/profile']"
+                class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded transition"
+              >
+                Perfil
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded transition"
+              >
+                Configuración
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded transition"
+              >
+                Actividad reciente
+              </a>
+            </li> -->
+            <li>
+              <a
+                href="#"
+                (click)="logout()"
+                class="block px-4 py-2 text-red-600 hover:bg-red-100 rounded transition"
+              >
+                Cerrar sesión
+              </a>
+            </li>
+          </ul>
+        </div>
+      </p-popover>
+    </div>
+  </div>
+</header>
+
+<app-sidebar #sidebar></app-sidebar>

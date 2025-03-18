@@ -1,0 +1,232 @@
+<div class="bg-gray-100 py-10 px-3 rounded-lg">
+  <h1 class="text-3xl font-bold mb-8 text-gray-800 text-center">Crear Nuevo Producto</h1>
+  <div class="max-w-3xl mx-auto">
+    <!-- Card -->
+    <div class="bg-white rounded-lg shadow-md p-6">
+      <form [formGroup]="productForm" class="space-y-6" (submit)="onSubmit()">
+        <!-- Grid de campos -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Campo: Nombre del producto -->
+          <div>
+            <label for="name" class="block text-sm font-medium text-gray-700"
+              >Nombre del producto</label
+            >
+            <input
+              type="text"
+              id="name"
+              formControlName="name"
+              placeholder="Ingrese el nombre del producto"
+              class="mt-1 block w-full px-3 py-2 border border-gray-400 text-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
+
+            @if(productForm.get('name')?.invalid && productForm.get('name')?.touched){
+              @if(productForm.get('name')?.errors?.['required']){
+                <small class="text-sm text-red-400">Este campo es requerido</small>
+              }
+              @else if(productForm.get('name')?.errors?.['minlength']){
+                <small class="text-sm text-red-400">Escribe mínimo 3 caracteres</small>
+              }
+            }
+          </div>
+
+          <!-- Campo: Precio -->
+          <div>
+            <label for="price" class="block text-sm font-medium text-gray-700"
+              >Precio</label
+            >
+            <input
+              type="text"
+              id="price"
+              formControlName="price"
+              (input)="formatInput('price', $event)"
+              placeholder="0"
+              class="mt-1 block w-full px-3 py-2 border border-gray-400 text-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
+
+            @if(productForm.get('price')?.invalid && productForm.get('price')?.touched){
+              @if(productForm.get('price')?.errors?.['required']){
+                <small class="text-sm text-red-400">Este campo es requerido</small>
+              }
+              @else if(productForm.get('price')?.errors?.['min']){
+                <small class="text-sm text-red-400">Digita mínimo $5.000 COP</small>
+              }
+            }
+          </div>
+
+          <!-- Campo: Precio de oferta -->
+          <div>
+            <label for="offer" class="block text-sm font-medium text-gray-700"
+              >Precio de oferta (opcional)</label
+            >
+            <input
+              type="text"
+              id="offer"
+              formControlName="offer"
+              placeholder="0"
+              (input)="formatInput('offer', $event)"
+              class="mt-1 block w-full px-3 py-2 border border-gray-400 text-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
+
+            @if(productForm.get('offer')?.invalid && productForm.get('offer')?.touched){
+              @if(productForm.get('offer')?.errors?.['required']){
+                <small class="text-sm text-red-400">Este campo es requerido</small>
+              }
+            }@else{
+              <p class="mt-2 text-sm text-gray-500">
+                Deja en blanco si no hay oferta
+              </p>
+            }
+          </div>
+
+          <!-- Campo: Imágenes del producto -->
+          <div class="space-y-2">
+            <label class="block text-sm font-medium text-gray-700">Imágenes del producto</label>
+            <div class="flex items-center gap-2">
+              <input
+                type="file"
+                accept="image/*"
+                multiple
+                (change)="onImageUpload($event)"
+                class="flex-1 block w-full px-3 py-2 border border-gray-400 texgt-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              />
+            </div>
+            <div *ngIf="images.length > 0" class="grid grid-cols-3 gap-2 mt-2">
+              <div *ngFor="let img of imagesUrl; let i = index" class="relative group">
+                <img [src]="img" alt="Producto" class="h-20 w-full object-cover rounded-md" />
+                <button
+                  type="button"
+                  (click)="removeImage(i)"
+                  class="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Campo: Descripción -->
+        <div>
+          <label
+            for="description"
+            class="block text-sm font-medium text-gray-700"
+            >Descripción</label
+          >
+          <textarea
+            id="description"
+            rows="4"
+            formControlName="description"
+            placeholder="Describa el producto..."
+            class="mt-1 block w-full px-3 py-2 border border-gray-400 text-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          ></textarea>
+
+
+          @if(productForm.get('description')?.invalid && productForm.get('description')?.touched){
+            @if(productForm.get('description')?.errors?.['required']){
+              <small class="text-sm text-red-400">Este campo es requerido</small>
+            }
+            @else if(productForm.get('description')?.errors?.['minlength']){
+              <small class="text-sm text-red-400">Escribe mínimo 10 caracteres</small>
+            }
+          }
+        </div>
+
+        <!-- Grid de campos adicionales -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Campo: Stock disponible -->
+          <div>
+            <label
+              for="availableStock"
+              class="block text-sm font-medium text-gray-700"
+              >Stock disponible</label
+            >
+            <input
+              type="number"
+              id="availableStock"
+              formControlName="availableStock"
+              placeholder="0"
+              class="mt-1 block w-full px-3 py-2 border border-gray-400 text-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
+
+            @if(productForm.get('availableStock')?.invalid && productForm.get('availableStock')?.touched){
+              @if(productForm.get('availableStock')?.errors?.['required']){
+                <small class="text-sm text-red-400">Este campo es requerido</small>
+              }
+              @else if(productForm.get('availableStock')?.errors?.['min']){
+                <small class="text-sm text-red-400">Digita mínimo 1</small>
+              }
+            }
+          </div>
+
+          <!-- Campo: Stock mínimo -->
+          <div>
+            <label
+              for="minimumStock"
+              class="block text-sm font-medium text-gray-700"
+              >Stock mínimo</label
+            >
+            <input
+              type="number"
+              id="minimumStock"
+              formControlName="minimumStock"
+              placeholder="0"
+              class="mt-1 block w-full px-3 py-2 border border-gray-400 text-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
+
+            @if(productForm.get('minimumStock')?.invalid && productForm.get('minimumStock')?.touched){
+              @if(productForm.get('minimumStock')?.errors?.['required']){
+                <small class="text-sm text-red-400">Este campo es requerido</small>
+              }
+            }
+          </div>
+        </div>
+
+        <!-- Botón de envío -->
+        <div class="flex justify-end">
+          <button
+            type="submit"
+            class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed"
+            [disabled]="isSubmitting || productForm.invalid"
+          >
+            <svg
+              *ngIf="isSubmitting"
+              xmlns="http://www.w3.org/2000/svg"
+              class="animate-spin h-4 w-4 mr-2"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+              ></path>
+            </svg>
+            <span *ngIf="isSubmitting">Guardando...</span>
+            <span class="flex" *ngIf="!isSubmitting">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-4 w-4 mr-2"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                ></path>
+              </svg>
+              Crear Producto
+            </span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

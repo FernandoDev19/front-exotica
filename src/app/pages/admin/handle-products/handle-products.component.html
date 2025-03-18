@@ -1,0 +1,28 @@
+<div class="container px-5 py-10">
+  <!-- Main content area -->
+  <div class="flex-1 flex flex-col h-full overflow-auto">
+    <div class="flex items-center mb-6 gap-2 text-gray-800">
+      <a routerLink="/admin/home" class="text-2xl font-semibold cursor-pointer">Inicio</a>
+      <fa-icon [icon]="faChevronRight"></fa-icon>
+      <a (click)="handleContent('default')" class="text-2xl cursor-pointer">Productos</a>
+      @if(content && content != 'default'){
+        <fa-icon [icon]="faChevronRight"></fa-icon>
+        <p class="text-2xl">{{ content }}</p>
+      }
+    </div>
+      @switch (content) {
+        @case ('crear') {
+          <app-admin-product-create></app-admin-product-create>
+        }
+        @case ('listar') {
+          <app-admin-product-list></app-admin-product-list>
+        }
+        @default {
+          <div class="flex flex-wrap justify-around gap-3 bg-gray-100 rounded-xl p-5">
+            <button type="button" (click)="handleContent('crear')" class="px-4 py-3 bg-blue-400 hover:bg-blue-500 cursor-pointer rounded-lg">Crear producto</button>
+            <button type="button" (click)="handleContent('listar')" class="px-4 py-3 bg-green-400 hover:bg-green-500 cursor-pointer rounded-lg">Listar productos</button>
+          </div>
+        }
+      }
+  </div>
+</div>
