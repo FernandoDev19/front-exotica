@@ -69,6 +69,7 @@ export class AdminProductCreateComponent implements OnInit {
 
   removeImage(index: number): void {
     this.images.splice(index, 1);
+    this.imagesUrl.splice(index, 1);
   }
 
   onSubmit(): void {
