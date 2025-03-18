@@ -6,7 +6,6 @@ import { RouterLink } from '@angular/router';
   selector: 'app-checkout-form',
   imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './checkout-form.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CheckoutFormComponent implements OnInit {
   public checkoutForm!: FormGroup;

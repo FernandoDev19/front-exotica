@@ -11,7 +11,6 @@ import { RouterLink } from '@angular/router';
   imports: [ProductComponent, AsyncPipe, RouterLink],
   templateUrl: './our-products.component.html',
   styleUrl: './our-products.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OurProductsComponent implements OnInit {
   protected $products!: Observable<Product[]>;

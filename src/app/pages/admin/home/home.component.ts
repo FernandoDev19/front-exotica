@@ -7,7 +7,6 @@ import { RouterLink } from '@angular/router';
   imports: [RouterLink],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent implements OnInit {
   private title = inject(Title);

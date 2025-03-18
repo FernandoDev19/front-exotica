@@ -13,7 +13,6 @@ import { Title } from '@angular/platform-browser';
   imports: [BannersComponent, OurProductsComponent, BestSellingProductsComponent, BenefitsComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent implements OnInit {
   protected isMobile!: boolean;

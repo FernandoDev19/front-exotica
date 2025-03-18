@@ -8,7 +8,6 @@ import { RouterLink } from '@angular/router';
   imports: [RouterLink],
   templateUrl: './blogs.component.html',
   styleUrl: './blogs.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BlogsComponent implements OnInit {
   protected blogs!: SafeHtml[];

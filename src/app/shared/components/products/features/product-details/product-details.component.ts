@@ -32,7 +32,6 @@ import { Router } from '@angular/router';
   ],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PDialogComponent implements OnInit {
   protected product!: Product;

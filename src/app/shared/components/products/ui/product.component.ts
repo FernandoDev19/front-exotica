@@ -12,7 +12,6 @@ import { DialogService } from '../features/product-details/data-access/dialog.se
   imports: [FontAwesomeModule, CurrencyPipe, NgFor, NgIf],
   templateUrl: './product.component.html',
   styleUrl: './product.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductComponent implements OnInit {
   faSearch: IconDefinition = faSearch;
