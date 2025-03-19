@@ -34,7 +34,6 @@ export class ProductService {
       return this.http
         .get<Product[]>(this.urlBase + '/' + option)
         .pipe(
-          share(),
           catchError((e) => {
             console.error(e.error.message);
             return of([]);
